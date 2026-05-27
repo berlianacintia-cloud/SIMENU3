@@ -179,7 +179,7 @@
                     <tr class="hover:bg-gray-50">
 
                         {{-- NAMA --}}
-                        <td class="px-6 py-4 font-semibold">
+                        <td class="px-6 py-5 font-semibold">
                             {{ $user->name }}
                         </td>
 

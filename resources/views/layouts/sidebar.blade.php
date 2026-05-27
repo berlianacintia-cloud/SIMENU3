@@ -34,6 +34,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     {{-- ================= ADMIN ================= --}}
     @role('admin')
+    
     <a href="/admin/dashboard"
    class="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300
    {{ request()->is('admin/dashboard*') ? 'bg-white/10 shadow-md' : 'hover:bg-white/10' }}">
@@ -130,35 +131,49 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     {{-- ================= DOKTER ================= --}}
     @role('dokter')
 
-    <a href="{{ route('patients.index') }}"
-       class="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300
-       {{ request()->routeIs('patients.*') ? 'bg-white/10 shadow-md' : 'hover:bg-white/10' }}">
+{{-- DASHBOARD --}}
+<a href="/dokter/dashboard"
+   class="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300
+   {{ request()->is('dokter/dashboard*') ? 'bg-white/10 shadow-md' : 'hover:bg-white/10' }}">
 
-        <i class="fa-solid fa-user-doctor text-lg w-5 text-center"></i>
+    <i class="fa-solid fa-house text-lg w-5 text-center"></i>
 
-        <span class="text-[15px] font-medium">
-            Data Pasien
-        </span>
+    <span class="text-[15px] font-medium">
+        Dashboard
+    </span>
 
-    </a>
+</a>
 
-    <a href="{{ route('laporan') }}"
-       class="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300
-       {{ request()->routeIs('laporan') ? 'bg-white/10 shadow-md' : 'hover:bg-white/10' }}">
+{{-- DATA PASIEN --}}
+<a href="{{ route('patients.index') }}"
+   class="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300
+   {{ request()->routeIs('patients.*') ? 'bg-white/10 shadow-md' : 'hover:bg-white/10' }}">
 
-        <i class="fa-solid fa-file-medical text-lg w-5 text-center"></i>
+    <i class="fa-solid fa-user-doctor text-lg w-5 text-center"></i>
 
-        <span class="text-[15px] font-medium">
-            Laporan
-        </span>
+    <span class="text-[15px] font-medium">
+        Data Pasien
+    </span>
 
-    </a>
+</a>
 
-    @endrole
-
+@endrole
 
     {{-- ================= AHLI GIZI ================= --}}
     @role('ahli_gizi')
+
+    {{-- DASHBOARD --}}
+<a href="/gizi/dashboard"
+   class="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300
+   {{ request()->is('gizi/dashboard*') ? 'bg-white/10 shadow-md' : 'hover:bg-white/10' }}">
+
+    <i class="fa-solid fa-house text-lg w-5 text-center"></i>
+
+    <span class="text-[15px] font-medium">
+        Dashboard
+    </span>
+
+</a>
 
     <a href="{{ route('menu-pasien.index') }}"
        class="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300
