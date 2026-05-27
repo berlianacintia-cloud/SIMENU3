@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="p-6">
+<div class="p-6 bg-[#EEF5F7] min-h-screen">
 
     {{-- HEADER --}}
     <div class="mb-6">
