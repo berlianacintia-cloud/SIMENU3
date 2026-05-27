@@ -123,7 +123,7 @@
         <div class="flex items-center justify-between p-5 border-b">
 
             <h2 class="text-2xl font-bold text-[#12384C]">
-                Manajemen Pengguna
+                Daftar User
             </h2>
 
             <button onclick="openModal()"
@@ -179,7 +179,7 @@
                     <tr class="hover:bg-gray-50">
 
                         {{-- NAMA --}}
-                        <td class="px-6 py-5 font-semibold">
+                        <td class="px-6 py-4 font-semibold">
                             {{ $user->name }}
                         </td>
 
@@ -210,7 +210,7 @@
                         {{-- ROLE --}}
                         <td class="px-6 py-4">
 
-                            <span class="border px-3 py-1 rounded-lg text-xs">
+                            <span class="border px-3 py-3 rounded-lg text-xs">
 
                                 {{ $user->role }}
 
