@@ -210,7 +210,7 @@
 
                             <th class="px-5 py-4 text-left">No</th>
                             <th class="px-5 py-4 text-left">Nama Pasien</th>
-                            <th class="px-5 py-4 text-left">NoRM</th>
+                            <th class="px-5 py-4 text-left">No RM</th>
                             <th class="px-5 py-4 text-left">Jenis Kelamin</th>
                             <th class="px-5 py-4 text-left">Tgl Lahir</th>
                             <th class="px-5 py-4 text-left">Diagnosis</th>

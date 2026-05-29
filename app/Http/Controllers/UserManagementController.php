@@ -37,7 +37,8 @@ class UserManagementController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
-        ]);
+             'unit_kerja' => $request->unit_kerja,
+    ]);
 
         // SPATIE ROLE
         $user->assignRole($request->role);
@@ -66,4 +67,34 @@ class UserManagementController extends Controller
             ->back()
             ->with('delete', 'User berhasil dihapus');
     }
+
+    public function show($id)
+{
+    $user = User::findOrFail($id);
+
+    return view('manajemen-user.show', compact('user'));
+}
+
+public function edit($id)
+{
+    $user = User::findOrFail($id);
+
+    return view('manajemen-user.edit', compact('user'));
+}
+
+public function update(Request $request, $id)
+{
+    $user = User::findOrFail($id);
+
+    $user->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'role' => $request->role,
+        'unit_kerja' => $request->unit_kerja,
+    ]);
+
+    return redirect()
+        ->route('manajemen-user.index')
+        ->with('success', 'User berhasil diupdate');
+}
 }

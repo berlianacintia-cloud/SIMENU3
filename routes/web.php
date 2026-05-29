@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('patients', PatientController::class);
 
     Route::resource('menu-pasien', MenuPatientController::class);
+    Route::resource('users', UserManagementController::class);
 
     /*
     |--------------------------------------------------------------------------
@@ -105,6 +106,12 @@ Route::middleware(['auth', 'role:dokter'])
 
     Route::delete('/manajemen-user/{id}', [UserManagementController::class, 'destroy'])
         ->name('manajemen-user.destroy');
+
+        Route::get('/users/{id}', [UserManagementController::class, 'show'])
+    ->name('users.show');
+
+Route::get('/users/{id}/edit', [UserManagementController::class, 'edit'])
+    ->name('users.edit');
 
     /*
     |--------------------------------------------------------------------------

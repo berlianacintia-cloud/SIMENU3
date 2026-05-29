@@ -53,7 +53,7 @@
                 <div class="mb-6">
 
                     <label class="block text-lg font-semibold mb-2 text-[#1F516B]">
-                        Username
+                        Email
                     </label>
 
                     <input type="text"

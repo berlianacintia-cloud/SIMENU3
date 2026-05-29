@@ -119,7 +119,7 @@
                             <th class="p-4 text-left">No</th>
                             <th class="p-4 text-left">Nama Pasien</th>
                             <th class="p-4 text-left">No RM</th>
-                            <th class="p-4 text-left">Ruangan</th>
+                            <th class="p-4 text-left">Nomor Kamar</th>
                             <th class="p-4 text-left">Bangsal</th>
                             <th class="p-4 text-left">Diet</th>
                             <th class="p-4 text-left">Jadwal</th>

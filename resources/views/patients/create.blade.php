@@ -1,27 +1,13 @@
 @extends('layouts.app')
+@section('title', 'Input Data Pasien')
 
 @section('content')
 
 <div class="p-3">
 
-    <!-- BACK -->
-    <div class="mb-3">
-
-        <a href="/patients"
-           class="w-9 h-9 bg-[#E8EEF2] rounded-full flex items-center justify-center text-base text-[#1F516B]">
-
-            ←
-
-        </a>
-
-    </div>
 
     <!-- TITLE -->
     <div class="mb-4">
-
-        <h1 class="text-3xl font-bold text-[#1F516B]">
-            Input Data Pasien
-        </h1>
 
         <p class="text-sm text-gray-500">
             Tambahkan data pasien baru ke dalam sistem
@@ -40,7 +26,7 @@
             <div class="flex items-start gap-3 mb-4">
 
                 <div class="text-2xl text-green-700">
-                    👤
+                    <i class="fa-solid fa-user"></i>
                 </div>
 
                 <div>
@@ -154,7 +140,7 @@
                 <div class="flex items-start gap-3 mb-4">
 
                     <div class="text-2xl text-blue-700">
-                        🩺
+                        <i class="fa-solid fa-stethoscope"></i>
                     </div>
 
                     <div>
@@ -228,7 +214,7 @@
                 <div class="flex items-start gap-3 mb-4">
 
                     <div class="text-2xl text-purple-700">
-                        ☎
+                       <i class="fa-solid fa-phone"></i>
                     </div>
 
                     <div>
@@ -281,7 +267,7 @@
             <div class="flex items-start gap-3 mb-4">
 
                 <div class="text-2xl text-yellow-500">
-                    📝
+                   <i class="fa-solid fa-pen"></i>
                 </div>
 
                 <div>

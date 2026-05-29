@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
+@section('title', 'Edit Data Pasien')
+
 @section('content')
 
-<div class="p-6 md:p-8 overflow-y-auto bg-[#EEF5F7] min-h-screen">
+<div class="p-6 md:p-3 overflow-y-auto bg-[#EEF5F7] min-h-screen">
 
     <!-- HEADER -->
      @if(session('success'))
@@ -40,16 +42,7 @@
 
     <div class="mb-6">
 
-        <a href="{{ route('patients.index') }}"
-           class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-xl text-gray-700 hover:bg-gray-300 transition">
-            ←
-        </a>
-
-        <h1 class="text-3xl font-bold text-[#1F516B] mt-3">
-            Edit Data Pasien
-        </h1>
-
-        <p class="text-gray-500 text-sm mt-1">
+        <p class="text-gray-600 text-sm mt-1">
             Perbarui Informasi Pasien
         </p>
 
@@ -125,13 +118,13 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
             <!-- INFORMASI PRIBADI -->
-            <div class="bg-[#F2F8FA] rounded-3xl shadow-md p-6">
+            <div class="bg-[#F2F8FA] rounded-3xl shadow-md p-6 ">
 
                 <h3 class="text-xl font-bold text-green-700 mb-5">
                     Informasi Pribadi
                 </h3>
 
-                <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                     <div>
                         <label class="font-semibold text-sm">
@@ -238,10 +231,38 @@
                             Jenis Diet
                         </label>
 
-                        <input type="text"
-                               name="jenis_diet"
-                               value="{{ $patient->jenis_diet }}"
-                               class="w-full mt-2 border rounded-xl px-4 py-3">
+                        <select
+    name="jenis_diet"
+    class="w-full mt-2 border rounded-xl px-4 py-3 bg-white">
+
+    <option value="">Pilih Jenis Diet</option>
+
+    <option value="Diet DM"
+        {{ $patient->jenis_diet == 'Diet DM' ? 'selected' : '' }}>
+        Diet DM
+    </option>
+
+    <option value="Diet Cair"
+        {{ $patient->jenis_diet == 'Diet Rendah Protein' ? 'selected' : '' }}>
+        Diet Cair
+    </option>
+
+    <option value="Diet Rendah Garam"
+        {{ $patient->jenis_diet == 'Diet Rendah Garam' ? 'selected' : '' }}>
+        Diet Rendah Garam
+    </option>
+
+    <option value="Diet Tinggi Protein"
+        {{ $patient->jenis_diet == 'Diet Tinggi Protein' ? 'selected' : '' }}>
+        Diet Tinggi Protein
+    </option>
+
+    <option value="Diet Lunak"
+        {{ $patient->jenis_diet == 'Diet Tinggi Serat' ? 'selected' : '' }}>
+        Diet Lunak
+    </option>
+
+</select>
                     </div>
 
                     <div>

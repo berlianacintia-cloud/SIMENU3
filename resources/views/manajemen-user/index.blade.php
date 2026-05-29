@@ -117,135 +117,228 @@
     </div>
 
     {{-- TABLE --}}
-    <div class="bg-white rounded-3xl shadow-md overflow-hidden">
+<div class="bg-white rounded-[28px] shadow-sm border border-slate-200 overflow-hidden">
 
-        {{-- HEADER TABLE --}}
-        <div class="flex items-center justify-between p-5 border-b">
+    {{-- HEADER TABLE --}}
+    <div class="flex items-center justify-between px-6 py-5 border-b border-slate-200 bg-[#F8FBFC]">
+
+        <div>
 
             <h2 class="text-2xl font-bold text-[#12384C]">
                 Daftar User
             </h2>
 
-            <button onclick="openModal()"
-                    class="bg-[#12384C] hover:bg-[#0D2C3C] text-white px-5 py-3 rounded-xl font-semibold">
-
-                + Tambah User
-
-            </button>
+            <p class="text-sm text-slate-500 mt-1">
+                Data pengguna sistem SIMENU
+            </p>
 
         </div>
 
-        {{-- TABLE --}}
-        <div class="overflow-x-auto">
+        <button onclick="openModal()"
+                class="bg-[#12384C] hover:bg-[#0D2C3C]
+                text-white px-5 py-3 rounded-2xl
+                font-semibold transition-all duration-200
+                shadow-sm">
 
-            <table class="w-full text-sm">
+            <i class="fa-solid fa-plus mr-2"></i>
+            Tambah User
 
-                <thead class="bg-gray-100 text-gray-600 uppercase">
+        </button>
 
-                    <tr>
+    </div>
 
-                        <th class="px-6 py-4 text-left">
-                            Nama Lengkap
-                        </th>
+    {{-- TABLE --}}
+    <div class="overflow-x-auto">
 
-                        <th class="px-6 py-4 text-left">
-                            NIP
-                        </th>
+        <table class="w-full">
 
-                        <th class="px-6 py-4 text-left">
-                            Status
-                        </th>
+            {{-- HEAD --}}
+            <thead class="bg-slate-100 text-slate-600 uppercase text-sm">
 
-                        <th class="px-6 py-4 text-left">
-                            Role
-                        </th>
+                <tr>
 
-                        <th class="px-6 py-4 text-left">
-                            Unit Kerja
-                        </th>
+                    <th class="px-6 py-4 text-left font-bold">
+                        Nama Lengkap
+                    </th>
 
-                        <th class="px-6 py-4 text-center">
-                            Aksi
-                        </th>
+                    <th class="px-6 py-4 text-left font-bold">
+                        NIP
+                    </th>
 
-                    </tr>
+                    <th class="px-6 py-4 text-left font-bold">
+                        Status
+                    </th>
 
-                </thead>
+                    <th class="px-6 py-4 text-left font-bold">
+                        Role
+                    </th>
 
-                <tbody class="divide-y">
+                    <th class="px-6 py-4 text-left font-bold">
+                        Unit Kerja
+                    </th>
 
-                    @foreach($users as $user)
+                    <th class="px-6 py-4 text-center font-bold">
+                        Aksi
+                    </th>
 
-                    <tr class="hover:bg-gray-50">
+                </tr>
 
-                        {{-- NAMA --}}
-                        <td class="px-6 py-4 font-semibold">
-                            {{ $user->name }}
-                        </td>
+            </thead>
 
-                        {{-- NIP --}}
-                        <td class="px-6 py-4">
-                            {{ $user->nip }}
-                        </td>
 
-                        {{-- STATUS --}}
-                        <td class="px-6 py-4">
 
-                            @if($user->status == 'Aktif')
+            {{-- BODY --}}
+            <tbody class="divide-y divide-slate-100 bg-white">
 
-                                <span class="bg-green-500 text-white text-xs px-3 py-1 rounded-lg">
-                                    Aktif
-                                </span>
+                @foreach($users as $user)
 
-                            @else
+                <tr class="hover:bg-slate-50 transition-all duration-150">
 
-                                <span class="bg-gray-400 text-white text-xs px-3 py-1 rounded-lg">
-                                    Nonaktif
-                                </span>
+                    {{-- NAMA --}}
+                    <td class="px-6 py-5">
 
-                            @endif
+                        <div class="flex items-center gap-3">
 
-                        </td>
+                            <div class="w-11 h-11 rounded-2xl bg-blue-100
+                                        flex items-center justify-center
+                                        font-bold text-blue-700">
 
-                        {{-- ROLE --}}
-                        <td class="px-6 py-4">
+                                {{ strtoupper(substr($user->name, 0, 1)) }}
 
-                            <span class="border px-3 py-3 rounded-lg text-xs">
+                            </div>
 
-                                {{ $user->role }}
+                            <div>
+
+                                <h1 class="font-semibold text-slate-800">
+                                    {{ $user->name }}
+                                </h1>
+
+                                <p class="text-xs text-slate-500">
+                                    Pengguna SIMENU
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+
+                    {{-- NIP --}}
+                    <td class="px-6 py-5 text-slate-700 font-medium">
+                        {{ $user->nip }}
+                    </td>
+
+
+
+                    {{-- STATUS --}}
+                    <td class="px-6 py-5">
+
+                        @if($user->status == 'Aktif')
+
+                            <span class="bg-green-100 text-green-700
+                                         text-xs px-4 py-2 rounded-full
+                                         font-semibold">
+
+                                Aktif
 
                             </span>
 
-                        </td>
+                        @else
 
-                        {{-- UNIT --}}
-                        <td class="px-6 py-4 font-semibold">
-                            {{ $user->unit_kerja }}
-                        </td>
+                            <span class="bg-gray-200 text-gray-700
+                                         text-xs px-4 py-2 rounded-full
+                                         font-semibold">
 
-                        {{-- AKSI --}}
-                        <td class="px-6 py-4 text-center">
+                                Nonaktif
 
-                            <button onclick="openDeleteModal({{ $user->id }})"
-                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm">
+                            </span>
 
-                                Hapus
+                        @endif
 
-                            </button>
+                    </td>
 
-                        </td>
 
-                    </tr>
 
-                    @endforeach
+                    {{-- ROLE --}}
+                    <td class="px-6 py-5">
 
-                </tbody>
+                        <span class="bg-blue-50 text-blue-700
+                                     border border-blue-200
+                                     px-4 py-2 rounded-xl
+                                     text-xs font-semibold">
 
-            </table>
+                            {{ $user->role }}
 
-        </div>
+                        </span>
+
+                    </td>
+
+
+
+                    {{-- UNIT --}}
+                    <td class="px-6 py-5 font-medium text-slate-700">
+                        {{ $user->unit_kerja }}
+                    </td>
+
+{{-- AKSI --}}
+<td class="px-6 py-5">
+
+    <div class="flex items-center justify-center gap-2">
+
+        {{-- DETAIL --}}
+        <a href="{{ route('users.show', $user->id) }}"
+           class="bg-blue-100 hover:bg-blue-200
+           text-blue-700 px-4 py-2 rounded-xl
+           text-sm font-semibold transition-all duration-200">
+
+            <i class="fa-solid fa-eye mr-1"></i>
+            Detail
+
+        </a>
+
+
+
+        {{-- EDIT --}}
+        <a href="{{ route('users.edit', $user->id) }}"
+           class="bg-yellow-100 hover:bg-yellow-200
+           text-yellow-700 px-4 py-2 rounded-xl
+           text-sm font-semibold transition-all duration-200">
+
+            <i class="fa-solid fa-pen-to-square mr-1"></i>
+            Edit
+
+        </a>
+
+
+
+        {{-- HAPUS --}}
+        <button onclick="openDeleteModal({{ $user->id }})"
+                class="bg-red-100 hover:bg-red-200
+                text-red-600 px-4 py-2 rounded-xl
+                text-sm font-semibold transition-all duration-200">
+
+            <i class="fa-solid fa-trash mr-1"></i>
+            Hapus
+
+        </button>
 
     </div>
+
+</td>
+
+                </tr>
+
+                @endforeach
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
 </div>
 
@@ -358,10 +451,31 @@
                 <select name="unit_kerja"
                         class="w-full border rounded-xl px-4 py-3">
 
-                    <option value="">Pilih Unit Kerja</option>
-                    <option value="Instalasi Gizi">Instalasi Gizi</option>
-                    <option value="Dapur Produksi">Dapur Produksi</option>
-                    <option value="Spesialis Anak">Spesialis Anak</option>
+                    <option value="Instalasi Gizi"
+            {{ old('unit_kerja', $user->unit_kerja ?? '') == 'Instalasi Gizi' ? 'selected' : '' }}>
+            Instalasi Gizi
+        </option>
+
+        <option value="Spesialis Penyakit Dalam"
+            {{ old('unit_kerja', $user->unit_kerja ?? '') == 'Spesialis Penyakit Dalam' ? 'selected' : '' }}>
+            Spesialis Penyakit Dalam
+        </option>
+
+        <option value="Rawat Inap"
+            {{ old('unit_kerja', $user->unit_kerja ?? '') == 'Rawat Inap' ? 'selected' : '' }}>
+            Rawat Inap
+        </option>
+
+        <option value="Poli Gizi"
+            {{ old('unit_kerja', $user->unit_kerja ?? '') == 'Poli Gizi' ? 'selected' : '' }}>
+            Poli Gizi
+        </option>
+
+        <option value="Dapur Rumah Sakit"
+            {{ old('unit_kerja', $user->unit_kerja ?? '') == 'Dapur Rumah Sakit' ? 'selected' : '' }}>
+            Dapur Rumah Sakit
+        </option>
+
 
                 </select>
 

@@ -14,7 +14,7 @@
     </div>
 
     {{-- CARD STATISTIK --}}
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
 
         {{-- TOTAL --}}
         <div class="bg-[#F6FFF8] border border-green-300 rounded-2xl px-5 py-4 shadow-sm">
@@ -120,7 +120,7 @@
     </div>
 
     {{-- FORM --}}
-    <div class="grid grid-cols-1 xl:grid-cols-3 gap-5 mb-6">
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-5 mb-6 mt-4">
 
         {{-- FORM INPUT --}}
         <div class="xl:col-span-2 bg-[#F2F8FA] rounded-3xl shadow-md p-5">
@@ -277,88 +277,181 @@
 
         </div>
 
-        {{-- DETAIL PASIEN --}}
-<div class="bg-[#F2F8FA] rounded-3xl shadow-md p-5">
+{{-- DETAIL PASIEN --}}
+<div class="bg-[#F2F8FA] rounded-[28px] shadow-sm border border-slate-200 overflow-hidden">
 
-    <h2 class="text-2xl font-bold text-[#1F516B] mb-5">
-        Data Pasien
-    </h2>
+    {{-- HEADER --}}
+    <div class="px-6 py-5 border-b border-slate-200 bg-white/40">
 
-    <div class="space-y-4 text-sm">
 
-        <!-- NAMA -->
-        <div class="flex justify-between">
-            <span class="font-semibold">Nama</span>
+        <div class="flex items-center gap-4">
 
-            <span id="cardNama">
-                -
-            </span>
+            {{-- ICON --}}
+            <div class="w-14 h-14 rounded-2xl bg-blue-100
+                        flex items-center justify-center">
+
+                <i class="fa-solid fa-user-injured text-blue-600 text-xl"></i>
+
+            </div>
+
+
+
+            {{-- TITLE --}}
+            <div>
+
+                <h2 class="text-2xl font-bold text-[#1F516B] leading-none">
+                    Data Pasien
+                </h2>
+
+                <p class="text-sm text-slate-500 mt-2">
+                    Informasi detail pasien terpilih
+                </p>
+
+            </div>
+
         </div>
 
-        <!-- NO RM -->
-        <div class="flex justify-between">
-            <span class="font-semibold">No RM</span>
+    </div>
 
-            <span id="cardNoRM">
-                -
-            </span>
-        </div>
 
-        <!-- NOMOR KAMAR -->
-        <div class="flex justify-between">
-            <span class="font-semibold">Nomor Kamar</span>
 
-            <span id="cardKamar">
-                -
-            </span>
-        </div>
+    {{-- CONTENT --}}
+    <div class="p-6">
 
-        <!-- BANGSAL -->
-        <div class="flex justify-between">
-            <span class="font-semibold">Bangsal</span>
+        <div class="space-y-4">
 
-            <span id="cardBangsal">
-                -
-            </span>
-        </div>
+            {{-- NAMA --}}
+            <div class="bg-white rounded-2xl border border-slate-200 px-4 py-3">
 
-        <!-- DIAGNOSIS -->
-        <div class="flex justify-between">
-            <span class="font-semibold">Diagnosis</span>
+                <div class="text-xs font-semibold text-slate-500 uppercase mb-1">
+                    Nama Pasien
+                </div>
 
-            <span id="cardDiagnosis">
-                -
-            </span>
-        </div>
+                <div id="cardNama"
+                     class="text-[15px] font-bold text-slate-800">
 
-        <!-- DIET -->
-        <div class="flex justify-between">
-            <span class="font-semibold">Diet</span>
+                    -
 
-            <span id="cardDiet">
-                -
-            </span>
-        </div>
+                </div>
 
-        <!-- ALERGI -->
-        <div class="flex justify-between">
-            <span class="font-semibold">Alergi</span>
+            </div>
 
-            <span id="cardAlergi">
-                -
-            </span>
+
+
+            {{-- NO RM --}}
+            <div class="bg-white rounded-2xl border border-slate-200 px-4 py-3">
+
+                <div class="text-xs font-semibold text-slate-500 uppercase mb-1">
+                    No RM
+                </div>
+
+                <div id="cardNoRM"
+                     class="text-[15px] font-semibold text-slate-800">
+
+                    -
+
+                </div>
+
+            </div>
+
+
+
+            {{-- NOMOR KAMAR --}}
+            <div class="bg-white rounded-2xl border border-slate-200 px-4 py-3">
+
+                <div class="text-xs font-semibold text-slate-500 uppercase mb-1">
+                    Nomor Kamar
+                </div>
+
+                <div id="cardKamar"
+                     class="text-[15px] font-semibold text-slate-800">
+
+                    -
+
+                </div>
+
+            </div>
+
+
+
+            {{-- BANGSAL --}}
+            <div class="bg-white rounded-2xl border border-slate-200 px-4 py-3">
+
+                <div class="text-xs font-semibold text-slate-500 uppercase mb-1">
+                    Bangsal
+                </div>
+
+                <div id="cardBangsal"
+                     class="text-[15px] font-semibold text-slate-800">
+
+                    -
+
+                </div>
+
+            </div>
+
+
+
+            {{-- DIAGNOSIS --}}
+            <div class="bg-white rounded-2xl border border-slate-200 px-4 py-3">
+
+                <div class="text-xs font-semibold text-slate-500 uppercase mb-1">
+                    Diagnosis
+                </div>
+
+                <div id="cardDiagnosis"
+                     class="text-[15px] font-semibold text-slate-800">
+
+                    -
+
+                </div>
+
+            </div>
+
+
+
+            {{-- DIET --}}
+            <div class="bg-white rounded-2xl border border-slate-200 px-4 py-3">
+
+                <div class="text-xs font-semibold text-slate-500 uppercase mb-1">
+                    Jenis Diet
+                </div>
+
+                <div id="cardDiet"
+                     class="text-[15px] font-semibold text-slate-800">
+
+                    -
+
+                </div>
+
+            </div>
+
+
+
+            {{-- ALERGI --}}
+            <div class="bg-white rounded-2xl border border-slate-200 px-4 py-3">
+
+                <div class="text-xs font-semibold text-slate-500 uppercase mb-1">
+                    Alergi
+                </div>
+
+                <div id="cardAlergi"
+                     class="text-[15px] font-semibold text-red-500">
+
+                    -
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
 </div>
 
-</div>
-
-</div>
-
 {{-- DAFTAR MENU PASIEN --}}
-<div class="bg-[#F2F8FA] rounded-3xl shadow-md p-5 mt-6">
+<div class="bg-[#F2F8FA] rounded-3xl shadow-md p-5 lg:col-span-3 w-full">
 
     <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
 
@@ -446,16 +539,15 @@
 
     </div>
 
-    <div class="overflow-x-auto">
-
-        <table class="w-full overflow-hidden rounded-2xl">
+<div class="w-full overflow-x-auto">
+        <table class="min-w-full overflow-hidden rounded-2xl">
 
             <thead class="bg-[#12384C] text-white">
 
                 <tr>
                     <th class="px-4 py-4 text-center">No</th>
                     <th class="px-4 py-4 text-left">Nama</th>
-                    <th class="px-4 py-4 text-left">Menu</th>
+                    <th class="px-4 py-4 text-left">Menu Makanan</th>
                     <th class="px-4 py-4 text-center">Kalori</th>
                     <th class="px-4 py-4 text-center">Bentuk</th>
                     <th class="px-4 py-4 text-center">Jadwal</th>
