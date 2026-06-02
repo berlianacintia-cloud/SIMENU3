@@ -33,7 +33,7 @@
                     </p>
 
                     <h2 class="text-2xl font-bold">
-                        256
+                       {{ $totalPasien }}
                     </h2>
 
                 </div>
@@ -58,7 +58,7 @@
                     </p>
 
                     <h2 class="text-2xl font-bold">
-                        18
+                        {{ $menuPagi }}
                     </h2>
 
                 </div>
@@ -83,7 +83,7 @@
                     </p>
 
                     <h2 class="text-2xl font-bold">
-                        198
+                        {{ $menuSiang }}
                     </h2>
 
                 </div>
@@ -108,7 +108,7 @@
                     </p>
 
                     <h2 class="text-2xl font-bold">
-                        5
+                        {{ $menuMalam }}
                     </h2>
 
                 </div>
@@ -230,7 +230,7 @@
                 <div class="mt-4">
 
                     <label class="font-semibold text-sm text-[#1F516B]">
-                        Jenis Diet / Menu Makanan
+                        Menu Makanan
                     </label>
 
                     <textarea name="jenis_diet"

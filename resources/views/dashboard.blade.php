@@ -25,11 +25,11 @@
                         <div>
 
                             <h1 class="font-bold text-green-700 text-sm">
-                                Total Pasien Hari Ini
+                                Total Pasien 
                             </h1>
 
                             <h2 class="text-3xl font-bold">
-                                128
+                               {{ $totalPasien }}
                             </h2>
 
                             <p class="text-gray-500 text-sm">
@@ -58,7 +58,7 @@
                             </h1>
 
                             <h2 class="text-3xl font-bold">
-                                128
+                                {{ $totalMenuAktif }}
                             </h2>
 
                             <p class="text-gray-500 text-sm">
@@ -87,7 +87,7 @@
                             </h1>
 
                             <h2 class="text-3xl font-bold">
-                                128
+                                {{ $distribusiHariIni }}
                             </h2>
 
                             <p class="text-gray-500 text-sm">
@@ -217,7 +217,19 @@
 
                     <div class="bg-white rounded-2xl p-4 shadow-sm">
 
-                        Belum ada aktivitas.
+                        @forelse($activities as $activity)
+    <div class="bg-white rounded-xl p-3 mb-2 shadow-sm">
+        <p class="text-sm text-gray-700">
+            {{ $activity->aktivitas }}
+        </p>
+
+        <small class="text-gray-400">
+            {{ $activity->created_at->diffForHumans() }}
+        </small>
+    </div>
+@empty
+    <p class="text-gray-500">Belum ada aktivitas.</p>
+@endforelse
 
                     </div>
 
@@ -245,7 +257,11 @@ new Chart(ctx, {
         datasets: [{
             label: 'Distribusi Hari Ini',
 
-            data: [12, 19, 8],
+            data: [
+    {{ $grafikDistribusi[0] }},
+    {{ $grafikDistribusi[1] }},
+    {{ $grafikDistribusi[2] }}
+],
 
             backgroundColor: [
                 '#1F516B',
@@ -268,5 +284,7 @@ new Chart(ctx, {
     }
 });
 </script>
+
+
 
 @endsection

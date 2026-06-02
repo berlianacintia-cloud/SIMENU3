@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
-
+use App\Models\ActivityLog;
 class PatientController extends Controller
 {
     /*
@@ -12,12 +12,59 @@ class PatientController extends Controller
     | TAMPIL DATA PASIEN
     |--------------------------------------------------------------------------
     */
-    public function index()
-    {
-        $patients = Patient::latest()->get();
+    public function index(Request $request)
+{
+    $query = Patient::query();
 
-        return view('patients.index', compact('patients'));
+    // SEARCH
+    if ($request->search) {
+
+        $query->where(function ($q) use ($request) {
+
+            $q->where('nama', 'like', '%' . $request->search . '%')
+              ->orWhere('no_rm', 'like', '%' . $request->search . '%')
+              ->orWhere('ruangan', 'like', '%' . $request->search . '%');
+
+        });
+
     }
+
+    // FILTER JENIS KELAMIN
+    if ($request->jenis_kelamin) {
+
+    $query->where('jenis_kelamin', 'like', '%' . $request->jenis_kelamin . '%');
+
+    }
+
+    // FILTER STATUS
+    if ($request->status) {
+
+        $query->where('status', 'like', '%' . $request->status . '%');
+
+    }
+
+    $patients = $query->latest()->get();
+
+    // Total pasien
+    $totalPasien = Patient::count();
+
+    // Pasien baru hari ini
+    $pasienBaruHariIni = Patient::whereDate('created_at', today())->count();
+
+    // Pasien aktif
+    $pasienAktif = Patient::where('status', 'Aktif')->count();
+
+    // Pasien nonaktif
+    $pasienNonaktif = Patient::where('status', 'Nonaktif')->count();
+
+    return view('patients.index', compact(
+        'patients',
+        'totalPasien',
+        'pasienBaruHariIni',
+        'pasienAktif',
+        'pasienNonaktif'
+    ));
+}
 
     /*
     |--------------------------------------------------------------------------
@@ -54,10 +101,15 @@ class PatientController extends Controller
 
         ]);
 
-        return redirect()
-                ->route('patients.index')
-                ->with('success', 'Data pasien berhasil ditambahkan');
-    }
+        // SIMPAN AKTIVITAS
+    ActivityLog::create([
+        'aktivitas' => 'Menambahkan pasien: ' . $request->nama
+    ]);
+
+    return redirect()
+            ->route('patients.index')
+            ->with('success', 'Data pasien berhasil ditambahkan');
+}
 
     /*
     |--------------------------------------------------------------------------
@@ -115,10 +167,16 @@ class PatientController extends Controller
     */
     public function destroy(Patient $patient)
     {
+
+    ActivityLog::create([
+    'aktivitas' => 'Menghapus pasien: ' . $patient->nama
+]);
+
         $patient->delete();
 
         return redirect()
                 ->route('patients.index')
                 ->with('success', 'Data pasien berhasil dihapus');
     }
+    
 }

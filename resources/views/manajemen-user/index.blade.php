@@ -69,11 +69,11 @@
         <div class="bg-red-50 border border-red-300 rounded-2xl p-4">
 
             <h3 class="text-red-600 font-semibold">
-                Super Admin
+                Admin
             </h3>
 
             <p class="text-3xl font-bold mt-2">
-                1
+               {{ $superAdmin }}
             </p>
 
         </div>
@@ -85,7 +85,7 @@
             </h3>
 
             <p class="text-3xl font-bold mt-2">
-                15
+                {{ $dokter }}
             </p>
 
         </div>
@@ -97,7 +97,7 @@
             </h3>
 
             <p class="text-3xl font-bold mt-2">
-                13
+               {{ $ahliGizi }}
             </p>
 
         </div>
@@ -105,11 +105,11 @@
         <div class="bg-orange-50 border border-orange-300 rounded-2xl p-4">
 
             <h3 class="text-orange-600 font-semibold">
-                Produksi
+                Petugas Dapur
             </h3>
 
             <p class="text-3xl font-bold mt-2">
-                5
+               {{ $petugasDapur }}
             </p>
 
         </div>

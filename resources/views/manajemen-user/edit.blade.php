@@ -90,6 +90,11 @@
                             Ahli Gizi
                         </option>
 
+                        <option value="ahli_gizi"
+                            {{ $user->role == 'petugas_dapur' ? 'selected' : '' }}>
+                            Petugas Dapur
+                        </option>
+
                     </select>
 
                 </div>

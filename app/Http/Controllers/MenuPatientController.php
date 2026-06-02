@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MenuPatient;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Models\ActivityLog;
 
 class MenuPatientController extends Controller
 {
@@ -46,7 +47,23 @@ public function index(Request $request)
 
     $menus = $query->latest()->get();
 
-    return view('menu-pasien.index', compact('menus', 'patients'));
+    // TOTAL REALTIME
+    $totalPasien = Patient::count();
+
+    $menuPagi = MenuPatient::where('jadwal_makan', 'Pagi')->count();
+
+    $menuSiang = MenuPatient::where('jadwal_makan', 'Siang')->count();
+
+    $menuMalam = MenuPatient::where('jadwal_makan', 'Malam')->count();
+
+    return view('menu-pasien.index', compact(
+        'menus',
+        'patients',
+        'totalPasien',
+        'menuPagi',
+        'menuSiang',
+        'menuMalam'
+    ));
 }
     /*
     |--------------------------------------------------------------------------

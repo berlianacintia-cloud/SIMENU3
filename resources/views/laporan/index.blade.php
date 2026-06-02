@@ -415,12 +415,12 @@
             <div>
 
                 <label class="font-semibold mb-2 block">
-                    Diet
+                    Menu Makanan
                 </label>
 
                 <select class="w-full border rounded-2xl px-4 py-3">
 
-                    <option>Semua Diet</option>
+                    <option>Semua Menu</option>
 
                     @foreach($menus->unique('jenis_diet') as $menu)
 
@@ -715,7 +715,7 @@
             <div>
 
                 <label class="font-semibold mb-2 block">
-                    Diet
+                    Menu Makanan
                 </label>
 
                 <select
@@ -724,7 +724,7 @@
                 >
 
                     <option value="">
-                        Semua Diet
+                        Semua Menu
                     </option>
 
                     @foreach($menus->unique('jenis_diet') as $menu)

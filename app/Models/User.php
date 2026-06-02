@@ -16,7 +16,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-         'nip',
+        'nip',
         'role',
         'unit_kerja',
         'status'

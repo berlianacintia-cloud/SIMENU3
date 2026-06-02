@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\ActivityLog;
 
 
 class UserManagementController extends Controller
@@ -13,11 +14,26 @@ class UserManagementController extends Controller
      * TAMPIL HALAMAN USER
      */
     public function index()
-    {
-        $users = User::latest()->get();
+{
+    $users = User::latest()->get();
 
-        return view('manajemen-user.index', compact('users'));
-    }
+    // Hitung role realtime
+    $superAdmin = User::where('role', 'admin')->count();
+
+    $dokter = User::where('role', 'dokter')->count();
+
+    $ahliGizi = User::where('role', 'ahli_gizi')->count();
+
+    $petugasDapur = User::where('role', 'petugas_dapur')->count();
+
+    return view('manajemen-user.index', compact(
+        'users',
+        'superAdmin',
+        'dokter',
+        'ahliGizi',
+        'petugasDapur'
+    ));
+}
 
     /**
      * SIMPAN USER
@@ -35,6 +51,7 @@ class UserManagementController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'nip' => $request->nip,
             'password' => Hash::make($request->password),
             'role' => $request->role,
              'unit_kerja' => $request->unit_kerja,
@@ -44,7 +61,9 @@ class UserManagementController extends Controller
         $user->assignRole($request->role);
 
         // SIMPAN AKTIVITAS
-        
+        ActivityLog::create([
+    'aktivitas' => 'Menambahkan user: ' . $request->name
+]);
 
         return redirect()
             ->back()

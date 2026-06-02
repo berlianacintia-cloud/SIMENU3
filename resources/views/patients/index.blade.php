@@ -63,7 +63,7 @@
                         </p>
 
                         <h2 class="text-3xl font-bold leading-none mt-1">
-                            18
+                            {{ $pasienBaruHariIni }}
                         </h2>
 
                         <p class="text-gray-500 text-sm mt-1">
@@ -136,7 +136,10 @@
 
         </div>
 
+ <form method="GET">
+
         {{-- FILTER --}}
+        
         <div class="bg-[#F2F8FA] rounded-3xl shadow-md p-5 mb-6">
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -145,6 +148,8 @@
                 <div class="md:col-span-2">
 
                     <input type="text"
+                     name="search"
+                     value="{{ request('search') }}"
                            placeholder="Cari nama pasien, NoRM, atau ruang"
                            class="w-full border border-gray-300 rounded-xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-300">
 
@@ -153,32 +158,53 @@
                 {{-- FILTER JK --}}
                 <div>
 
-                    <select class="w-full border border-gray-300 rounded-xl px-4 py-3">
+                   <select name="jenis_kelamin"
+                onchange="this.form.submit()"
+                class="w-full border border-gray-300 rounded-xl px-4 py-3">
 
-                        <option>Semua</option>
-                        <option>Laki-laki</option>
-                        <option>Perempuan</option>
+            <option value="">Semua</option>
 
-                    </select>
+            <option value="Laki-laki"
+                {{ request('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>
+                Laki-laki
+            </option>
+
+            <option value="Perempuan"
+                {{ request('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>
+                Perempuan
+            </option>
+
+        </select>
 
                 </div>
 
                 {{-- FILTER STATUS --}}
                 <div>
 
-                    <select class="w-full border border-gray-300 rounded-xl px-4 py-3">
+                     <select name="status"
+                onchange="this.form.submit()"
+                class="w-full border border-gray-300 rounded-xl px-4 py-3">
 
-                        <option>Status</option>
-                        <option>Aktif</option>
-                        <option>Nonaktif</option>
+            <option value="">Status</option>
 
-                    </select>
+            <option value="Aktif"
+                {{ request('status') == 'Aktif' ? 'selected' : '' }}>
+                Aktif
+            </option>
 
+            <option value="Nonaktif"
+                {{ request('status') == 'Nonaktif' ? 'selected' : '' }}>
+                Nonaktif
+            </option>
+
+        </select>
                 </div>
 
             </div>
 
         </div>
+
+    </form>
 
         {{-- TABLE --}}
         <div class="bg-[#F2F8FA] rounded-3xl shadow-md p-6">

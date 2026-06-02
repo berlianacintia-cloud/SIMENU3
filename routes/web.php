@@ -2,12 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\MenuPatient;
+use App\Models\Patient;
+use App\Models\ActivityLog;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MenuPatientController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\AhliGiziController;
 use App\Http\Controllers\PetugasDapurController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,9 +95,35 @@ Route::middleware(['auth', 'role:dokter'])
 
     Route::get('/admin/dashboard', function () {
 
-    $activities = [];
+    // Total pasien
+    $totalPasien = Patient::count();
 
-    return view('dashboard', compact('activities'));
+    // Total menu aktif
+    $totalMenuAktif = MenuPatient::count();
+
+    // Distribusi hari ini
+    $distribusiHariIni = MenuPatient::whereDate('created_at', today())
+        ->count();
+
+    // Aktivitas terbaru
+    $activities = ActivityLog::latest()->take(5)->get();
+
+    // GRAFIK DISTRIBUSI REALTIME
+    $grafikDistribusi = [
+        MenuPatient::where('jadwal_makan', 'Pagi')->count(),
+
+        MenuPatient::where('jadwal_makan', 'Siang')->count(),
+
+        MenuPatient::where('jadwal_makan', 'Malam')->count(),
+    ];
+
+    return view('dashboard', compact(
+        'activities',
+        'totalPasien',
+        'totalMenuAktif',
+        'distribusiHariIni',
+        'grafikDistribusi',
+    ));
 
 });
 
