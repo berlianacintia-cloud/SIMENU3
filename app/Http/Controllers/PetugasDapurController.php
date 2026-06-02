@@ -17,6 +17,12 @@ class PetugasDapurController extends Controller
             'Diproses'
         )->count();
 
+        // MENU SELESAI / DISTRIBUSI
+        $totalDistribusi = MenuPatient::where(
+            'status_menu',
+            'Selesai'
+        )->count();
+
         // MENU SELESAI
         $menuSelesai = MenuPatient::where(
             'status_menu',
@@ -29,18 +35,40 @@ class PetugasDapurController extends Controller
             'Selesai'
         )->count();
 
+        // GRAFIK DISTRIBUSI
+        $grafikDistribusi = [
+
+            MenuPatient::where(
+                'jadwal_makan',
+                'Pagi'
+            )->count(),
+
+            MenuPatient::where(
+                'jadwal_makan',
+                'Siang'
+            )->count(),
+
+            MenuPatient::where(
+                'jadwal_makan',
+                'Malam'
+            )->count(),
+
+        ];
+
         // MENU TERBARU
         $recentMenus = MenuPatient::with('patient')
-    ->latest()
-    ->take(5)
-    ->get();
+            ->latest()
+            ->take(5)
+            ->get();
 
         return view('dapur.dashboard', compact(
             'totalMenu',
             'menuDiproses',
             'menuSelesai',
             'labelDicetak',
-            'recentMenus'
+            'recentMenus',
+            'totalDistribusi',
+            'grafikDistribusi'
         ));
     }
 }

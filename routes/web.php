@@ -147,20 +147,29 @@ Route::get('/users/{id}/edit', [UserManagementController::class, 'edit'])
     | DOKTER
     |--------------------------------------------------------------------------
     */
-
-    Route::view('/dokter/dashboard', 'dashboard');
-
-    Route::middleware(['auth', 'role:dokter'])
+Route::middleware(['auth', 'role:dokter'])
 ->prefix('dokter')
 ->group(function () {
 
-    Route::view('/dashboard', 'dokter.dashboard');
+    Route::get('/dashboard', function () {
+
+        $totalPasien = \App\Models\Patient::count();
+
+        $pasienAktif = \App\Models\Patient::where('status', 'Aktif')->count();
+
+        $pasienBaru = \App\Models\Patient::whereDate('created_at', today())->count();
+
+        return view('dokter.dashboard', compact(
+            'totalPasien',
+            'pasienAktif',
+            'pasienBaru'
+        ));
+
+    });
 
     Route::get('/data-pasien', [PatientController::class, 'index'])
         ->name('dokter.pasien');
 
-    Route::get('/laporan', [LaporanController::class, 'index'])
-        ->name('dokter.laporan');
 });
 
     /*

@@ -4,11 +4,11 @@
 
 @section('content')
 
-<div class="p-6 bg-[#EEF5F7] min-h-screen">
+<div class="p-3 bg-[#EEF5F7] min-h-screen">
 
     {{-- HEADER --}}
     <div class="mb-6">
-        <p class="text-gray-500 mt-1">
+        <p class="text-gray-500 mt-1 text-sm">
             Cetak label distribusi makanan pasien
         </p>
     </div>

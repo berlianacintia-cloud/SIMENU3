@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="p-6 bg-[#EEF5F7] min-h-screen"">
+<div class="p-3 bg-[#EEF5F7] min-h-screen"">
 
     {{-- MODAL SUCCESS --}}
     @if(session('success'))
@@ -57,64 +57,100 @@
     
     {{-- HEADER --}}
     <div class="mb-6">
-        <p class="text-gray-500 mt-1">
+        <p class="text-gray-500 mt-1 text-sm">
             Daftar Pengguna dan Hak Akses
         </p>
 
     </div>
 
-    {{-- CARD ROLE --}}
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+  {{-- CARD ROLE --}}
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
 
-        <div class="bg-red-50 border border-red-300 rounded-2xl p-4">
+    {{-- ADMIN --}}
+    <div class="bg-red-50 border border-red-300 rounded-2xl px-5 py-4 shadow-sm">
 
-            <h3 class="text-red-600 font-semibold">
-                Admin
-            </h3>
+        <div class="flex items-center gap-3">
 
-            <p class="text-3xl font-bold mt-2">
-               {{ $superAdmin }}
-            </p>
+            <div>
 
-        </div>
+                <p class="text-red-600 font-bold text-sm">
+                    Admin
+                </p>
 
-        <div class="bg-blue-50 border border-blue-300 rounded-2xl p-4">
+                <h2 class="text-2xl font-bold">
+                    {{ $superAdmin }}
+                </h2>
 
-            <h3 class="text-blue-600 font-semibold">
-                Dokter
-            </h3>
-
-            <p class="text-3xl font-bold mt-2">
-                {{ $dokter }}
-            </p>
-
-        </div>
-
-        <div class="bg-green-50 border border-green-300 rounded-2xl p-4">
-
-            <h3 class="text-green-600 font-semibold">
-                Ahli Gizi
-            </h3>
-
-            <p class="text-3xl font-bold mt-2">
-               {{ $ahliGizi }}
-            </p>
-
-        </div>
-
-        <div class="bg-orange-50 border border-orange-300 rounded-2xl p-4">
-
-            <h3 class="text-orange-600 font-semibold">
-                Petugas Dapur
-            </h3>
-
-            <p class="text-3xl font-bold mt-2">
-               {{ $petugasDapur }}
-            </p>
+            </div>
 
         </div>
 
     </div>
+
+    {{-- DOKTER --}}
+    <div class="bg-blue-50 border border-blue-300 rounded-2xl px-5 py-4 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div>
+
+                <p class="text-blue-600 font-bold text-sm">
+                    Dokter
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ $dokter }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- AHLI GIZI --}}
+    <div class="bg-green-50 border border-green-300 rounded-2xl px-5 py-4 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div>
+
+                <p class="text-green-600 font-bold text-sm">
+                    Ahli Gizi
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ $ahliGizi }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- PETUGAS DAPUR --}}
+    <div class="bg-orange-50 border border-orange-300 rounded-2xl px-5 py-4 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div>
+
+                <p class="text-orange-600 font-bold text-sm">
+                    Petugas Dapur
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ $petugasDapur }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
     {{-- TABLE --}}
 <div class="bg-white rounded-[28px] shadow-sm border border-slate-200 overflow-hidden">

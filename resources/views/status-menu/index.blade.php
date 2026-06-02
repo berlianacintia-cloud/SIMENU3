@@ -15,94 +15,109 @@
     </div>
 
     <!-- CARD STATISTIK -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
 
-        <!-- TOTAL -->
-        <div class="bg-white rounded-3xl p-5 border border-green-200 shadow-sm">
-            <div class="flex items-center gap-4">
+    <!-- TOTAL -->
+    <div class="bg-white rounded-2xl px-5 py-4 border border-green-200 shadow-sm">
 
-                <div class="bg-green-100 p-4 rounded-2xl text-2xl">
-                    👤
-                </div>
+        <div class="flex items-center gap-3">
 
-                <div>
-                    <p class="text-green-700 font-semibold">
-                        Total Pasien
-                    </p>
+            <div class="bg-green-100 w-11 h-11 rounded-xl flex items-center justify-center text-lg">
+                👤
+            </div>
 
-                    <h2 class="text-4xl font-bold text-[#124265]">
-                        {{ $menus->count() }}
-                    </h2>
-                </div>
+            <div>
+
+                <p class="text-green-700 font-semibold text-sm">
+                    Total Pasien
+                </p>
+
+                <h2 class="text-2xl font-bold text-[#124265]">
+                    {{ $menus->count() }}
+                </h2>
 
             </div>
-        </div>
 
-        <!-- SIAP -->
-        <div class="bg-white rounded-3xl p-5 border border-yellow-200 shadow-sm">
-            <div class="flex items-center gap-4">
-
-                <div class="bg-yellow-100 p-4 rounded-2xl text-2xl">
-                    🍽️
-                </div>
-
-                <div>
-                    <p class="text-yellow-700 font-semibold">
-                        Siap
-                    </p>
-
-                    <h2 class="text-4xl font-bold text-[#124265]">
-                        {{ $menus->where('status_menu', 'Siap')->count() }}
-                    </h2>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- DIMASAK -->
-        <div class="bg-white rounded-3xl p-5 border border-red-200 shadow-sm">
-            <div class="flex items-center gap-4">
-
-                <div class="bg-red-100 p-4 rounded-2xl text-2xl">
-                    👨‍🍳
-                </div>
-
-                <div>
-                    <p class="text-red-700 font-semibold">
-                        Dimasak
-                    </p>
-
-                    <h2 class="text-4xl font-bold text-[#124265]">
-                        {{ $menus->where('status_menu', 'Dimasak')->count() }}
-                    </h2>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- SELESAI -->
-        <div class="bg-white rounded-3xl p-5 border border-blue-200 shadow-sm">
-            <div class="flex items-center gap-4">
-
-                <div class="bg-blue-100 p-4 rounded-2xl text-2xl">
-                    ✅
-                </div>
-
-                <div>
-                    <p class="text-blue-700 font-semibold">
-                        Selesai
-                    </p>
-
-                    <h2 class="text-4xl font-bold text-[#124265]">
-                        {{ $menus->where('status_menu', 'Selesai')->count() }}
-                    </h2>
-                </div>
-
-            </div>
         </div>
 
     </div>
 
+    <!-- SIAP -->
+    <div class="bg-white rounded-2xl px-5 py-4 border border-yellow-200 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div class="bg-yellow-100 w-11 h-11 rounded-xl flex items-center justify-center text-lg">
+                🍽️
+            </div>
+
+            <div>
+
+                <p class="text-yellow-700 font-semibold text-sm">
+                    Siap
+                </p>
+
+                <h2 class="text-2xl font-bold text-[#124265]">
+                    {{ $menus->where('status_menu', 'Siap')->count() }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- DIMASAK -->
+    <div class="bg-white rounded-2xl px-5 py-4 border border-red-200 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div class="bg-red-100 w-11 h-11 rounded-xl flex items-center justify-center text-lg">
+                👨‍🍳
+            </div>
+
+            <div>
+
+                <p class="text-red-700 font-semibold text-sm">
+                    Dimasak
+                </p>
+
+                <h2 class="text-2xl font-bold text-[#124265]">
+                    {{ $menus->where('status_menu', 'Dimasak')->count() }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SELESAI -->
+    <div class="bg-white rounded-2xl px-5 py-4 border border-blue-200 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div class="bg-blue-100 w-11 h-11 rounded-xl flex items-center justify-center text-lg">
+                ✅
+            </div>
+
+            <div>
+
+                <p class="text-blue-700 font-semibold text-sm">
+                    Selesai
+                </p>
+
+                <h2 class="text-2xl font-bold text-[#124265]">
+                    {{ $menus->where('status_menu', 'Selesai')->count() }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
     <!-- FILTER -->
     <div class="flex flex-col md:flex-row gap-4 mb-8">
 

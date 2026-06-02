@@ -4,138 +4,137 @@
 
 @section('content')
 
-<div class="p-6 bg-[#EEF5F7] min-h-screen">
+<div class="p-3 bg-[#EEF5F7] min-h-screen">
 
         {{-- HEADER --}}
         <div class="mb-6">
 
-            <p class="text-gray-500 text-lg mt-1">
+            <p class="text-gray-500 text-lg mt-1 text-sm">
                 Kelola dan Monitor Data Pasien
             </p>
 
         </div>
 
         {{-- CARD STATISTIK --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-7">
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-7">
 
-            {{-- TOTAL PASIEN --}}
-            <div class="bg-[#F6FFF8] border border-green-400 rounded-2xl px-6 py-5 shadow-sm">
+    {{-- TOTAL PASIEN --}}
+    <div class="bg-[#F6FFF8] border border-green-300 rounded-2xl px-5 py-4 shadow-sm">
 
-                <div class="flex items-center gap-4">
+        <div class="flex items-center gap-3">
 
-                    <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                        <span class="text-2xl">👤</span>
-                    </div>
-
-                    <div>
-
-                        <p class="text-green-700 font-semibold text-[15px]">
-                            Total Pasien
-                        </p>
-
-                        <h2 class="text-3xl font-bold leading-none mt-1">
-                            {{ $patients->count() }}
-                        </h2>
-
-                        <p class="text-gray-500 text-sm mt-1">
-                            Pasien Terdaftar
-                        </p>
-
-                    </div>
-
-                </div>
-
+            <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center text-lg">
+                👤
             </div>
 
-            {{-- PASIEN BARU --}}
-            <div class="bg-[#FFFDF2] border border-yellow-500 rounded-2xl px-6 py-5 shadow-sm">
+            <div>
 
-                <div class="flex items-center gap-4">
+                <p class="text-green-700 font-semibold text-sm">
+                    Total Pasien
+                </p>
 
-                    <div class="w-12 h-12 rounded-xl bg-yellow-100 flex items-center justify-center">
-                        <span class="text-2xl">➕</span>
-                    </div>
+                <h2 class="text-2xl font-bold">
+                    {{ $patients->count() }}
+                </h2>
 
-                    <div>
-
-                        <p class="text-yellow-700 font-semibold text-[15px]">
-                            Pasien Baru
-                        </p>
-
-                        <h2 class="text-3xl font-bold leading-none mt-1">
-                            {{ $pasienBaruHariIni }}
-                        </h2>
-
-                        <p class="text-gray-500 text-sm mt-1">
-                            Bulan Ini
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            {{-- PASIEN AKTIF --}}
-            <div class="bg-[#FFF8F8] border border-red-400 rounded-2xl px-6 py-5 shadow-sm">
-
-                <div class="flex items-center gap-4">
-
-                    <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center">
-                        <span class="text-2xl">🧑‍⚕️</span>
-                    </div>
-
-                    <div>
-
-                        <p class="text-red-700 font-semibold text-[15px]">
-                            Pasien Aktif
-                        </p>
-
-                        <h2 class="text-3xl font-bold leading-none mt-1">
-                            {{ $patients->where('status', 'Aktif')->count() }}
-                        </h2>
-
-                        <p class="text-gray-500 text-sm mt-1">
-                            Sedang Berobat
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            {{-- PASIEN NONAKTIF --}}
-            <div class="bg-[#F8FAFF] border border-blue-300 rounded-2xl px-6 py-5 shadow-sm">
-
-                <div class="flex items-center gap-4">
-
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
-                        <span class="text-2xl">👁️</span>
-                    </div>
-
-                    <div>
-
-                        <p class="text-gray-700 font-semibold text-[15px]">
-                            Pasien Nonaktif
-                        </p>
-
-                        <h2 class="text-3xl font-bold leading-none mt-1">
-                            {{ $patients->where('status', 'Nonaktif')->count() }}
-                        </h2>
-
-                        <p class="text-gray-500 text-sm mt-1">
-                            Tidak Aktif
-                        </p>
-
-                    </div>
-
-                </div>
+                <p class="text-gray-500 text-xs mt-1">
+                    Pasien Terdaftar
+                </p>
 
             </div>
 
         </div>
 
+    </div>
+
+    {{-- PASIEN BARU --}}
+    <div class="bg-[#FFFBEA] border border-yellow-300 rounded-2xl px-5 py-4 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div class="w-11 h-11 rounded-xl bg-yellow-100 flex items-center justify-center text-lg">
+                ➕
+            </div>
+
+            <div>
+
+                <p class="text-yellow-700 font-semibold text-sm">
+                    Pasien Baru
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ $pasienBaruHariIni }}
+                </h2>
+
+                <p class="text-gray-500 text-xs mt-1">
+                    Bulan Ini
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- PASIEN AKTIF --}}
+    <div class="bg-[#FFF6F6] border border-red-300 rounded-2xl px-5 py-4 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div class="w-11 h-11 rounded-xl bg-red-100 flex items-center justify-center text-lg">
+                🧑‍⚕️
+            </div>
+
+            <div>
+
+                <p class="text-red-700 font-semibold text-sm">
+                    Pasien Aktif
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ $patients->where('status', 'Aktif')->count() }}
+                </h2>
+
+                <p class="text-gray-500 text-xs mt-1">
+                    Sedang Berobat
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- PASIEN NONAKTIF --}}
+    <div class="bg-[#F8FAFF] border border-blue-300 rounded-2xl px-5 py-4 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <div class="w-11 h-11 rounded-xl bg-blue-100 flex items-center justify-center text-lg">
+                👁️
+            </div>
+
+            <div>
+
+                <p class="text-blue-700 font-semibold text-sm">
+                    Pasien Nonaktif
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ $patients->where('status', 'Nonaktif')->count() }}
+                </h2>
+
+                <p class="text-gray-500 text-xs mt-1">
+                    Tidak Aktif
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
  <form method="GET">
 
         {{-- FILTER --}}

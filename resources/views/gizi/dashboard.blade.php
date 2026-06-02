@@ -1,63 +1,224 @@
 @extends('layouts.app')
-
 @section('title', 'Dashboard Ahli Gizi')
-
 @section('content')
 
-<div class="space-y-6">
+<div class="p-3 bg-[#F5FAFC] min-h-screen">
+
+    {{-- HEADER --}}
+    <div class="mb-5">
+
+        <p class="text-gray-500 mt-1 text-base">
+            Monitoring menu & status pasien rumah sakit
+        </p>
+
+    </div>
 
     {{-- HERO --}}
-    <div class="relative overflow-hidden rounded-[30px]
-        bg-gradient-to-r from-[#2B5D76] to-[#4B89A5]
-        p-7 shadow-md">
+    <div class="bg-gradient-to-r from-[#1F516B] to-[#5F91A8]
+                rounded-[26px] px-7 py-5 mb-5
+                shadow-sm relative overflow-hidden">
 
-        <div class="absolute right-0 top-0 opacity-10">
+        <div class="flex items-center justify-between flex-wrap gap-5">
 
-            <i class="fa-solid fa-bowl-food text-[170px]"></i>
+            <div class="relative z-10">
 
-        </div>
+                <p class="uppercase tracking-[4px]
+                          text-white/70 text-[11px]
+                          font-semibold mb-3">
 
-        <div class="relative z-10 flex items-center justify-between">
-
-            <div>
-
-                <p class="uppercase tracking-[3px]
-                    text-xs text-white/80 font-medium">
-
-                    Pelayanan Gizi Rumah Sakit
+                    PELAYANAN GIZI RUMAH SAKIT
 
                 </p>
 
-                <h1 class="text-3xl font-bold mt-3
-                    text-white leading-tight">
+                <h1 class="text-3xl font-bold
+                           text-white leading-tight">
 
                     Monitoring Menu & Status Pasien
 
                 </h1>
 
-                <p class="mt-4 text-white/90">
+                <p class="text-white/80 mt-4 text-base">
 
                     Selamat datang kembali,
-                    <span class="font-semibold">
-                        {{ auth()->user()->name }}
-                    </span>
+                    {{ Auth::user()->name }}
 
                 </p>
 
             </div>
 
-            <div class="hidden md:flex">
+            {{-- TANGGAL --}}
+            <div class="bg-white/15 backdrop-blur-md
+                        border border-white/20
+                        rounded-2xl px-5 py-4">
 
-                <div class="bg-white/15 backdrop-blur-md
-                    px-5 py-4 rounded-2xl border border-white/20">
+                <div class="flex items-center gap-3">
 
-                    <p class="text-xs text-white/70">
-                        Tanggal Hari Ini
+                    <div class="w-12 h-12 rounded-xl
+                                bg-white/20
+                                flex items-center justify-center text-2xl">
+
+                        📅
+
+                    </div>
+
+                    <div>
+
+                        <p class="text-white/70 text-xs">
+                            Hari Ini
+                        </p>
+
+                        <h2 class="text-2xl font-bold text-white">
+
+                            {{ now()->format('d M Y') }}
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{-- ORNAMEN --}}
+        <div class="absolute -right-10 -top-10
+                    w-44 h-44 bg-white/10 rounded-full">
+        </div>
+
+        <div class="absolute right-16 bottom-[-50px]
+                    w-32 h-32 bg-white/5 rounded-full">
+        </div>
+
+    </div>
+
+   {{-- CONTENT --}}
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-5 items-start">
+
+    {{-- GRAFIK --}}
+    <div class="xl:col-span-2
+                bg-white border border-[#DCE8EC]
+                rounded-3xl p-5 shadow-sm">
+
+        <h2 class="text-2xl font-bold text-[#124265]">
+            Statistik Menu Pasien
+        </h2>
+
+        <p class="text-gray-500 text-sm mt-1 mb-4">
+            Monitoring data menu
+        </p>
+
+        {{-- WRAPPER --}}
+        <div class="relative h-[300px]">
+
+            <canvas id="giziChart"></canvas>
+
+        </div>
+
+    </div>
+
+{{-- AKTIVITAS --}}
+<div class="bg-white border border-[#DCE8EC]
+            rounded-3xl p-5 shadow-sm">
+
+    <h2 class="text-2xl font-bold text-[#124265] mb-4">
+        Aktivitas Hari Ini
+    </h2>
+
+    <div class="space-y-3">
+
+        {{-- PASIEN BARU --}}
+        <div class="bg-[#F5FAFC]
+                    border border-[#E3EEF2]
+                    rounded-2xl p-3">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-12 h-12 rounded-xl
+                            bg-[#DDF2F7]
+                            flex items-center justify-center text-xl">
+
+                    👤
+
+                </div>
+
+                <div>
+
+                    <h3 class="font-semibold text-[#124265]">
+                        Pasien Baru
+                    </h3>
+
+                    <p class="text-gray-500 text-sm">
+
+                        {{ $pasienBaru }} pasien belum memiliki menu makanan
+
                     </p>
 
-                    <h2 class="text-lg font-bold text-white mt-1">
-                        {{ date('d M Y') }}
-                    </h2>
+                </div>
+
+            </div>
+
+        </div>
+
+        {{-- MENU DIPROSES --}}
+        <div class="bg-[#FFFBEF]
+                    border border-yellow-200
+                    rounded-2xl p-3">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-12 h-12 rounded-xl
+                            bg-yellow-100
+                            flex items-center justify-center text-xl">
+
+                    👨‍🍳
+
+                </div>
+
+                <div>
+
+                    <h3 class="font-semibold text-[#124265]">
+                        Menu Diproses
+                    </h3>
+
+                    <p class="text-gray-500 text-sm">
+
+                        {{ $menuDiproses }} menu sedang dimasak dapur
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{-- DISTRIBUSI --}}
+        <div class="bg-[#FFF6F6]
+                    border border-red-200
+                    rounded-2xl p-3">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-12 h-12 rounded-xl
+                            bg-red-100
+                            flex items-center justify-center text-xl">
+
+                    🚚
+
+                </div>
+
+                <div>
+
+                    <h3 class="font-semibold text-[#124265]">
+                        Distribusi Menu
+                    </h3>
+
+                    <p class="text-gray-500 text-sm">
+
+                        {{ $distribusiMenu }} menu siap didistribusikan
+
+                    </p>
 
                 </div>
 
@@ -67,200 +228,86 @@
 
     </div>
 
-    {{-- QUICK MENU --}}
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-
-        <a href="/patients"
-           class="bg-[#F9FCFD] rounded-3xl p-6
-           border border-[#D7E5EC]
-           shadow-sm hover:shadow-md transition">
-
-            <div class="w-14 h-14 rounded-2xl
-                bg-[#EDF6FA]
-                flex items-center justify-center mb-5">
-
-                <i class="fa-solid fa-user-injured
-                    text-[#2B5D76] text-2xl"></i>
-
-            </div>
-
-            <h2 class="text-lg font-bold text-[#2B5D76]">
-                Data Pasien
-            </h2>
-
-            <p class="text-gray-500 text-sm mt-2">
-                Lihat daftar pasien
-            </p>
-
-        </a>
-
-       {{-- MENU PASIEN --}}
-<a href="{{ route('gizi.menu-pasien') }}"
-   class="bg-[#F9FCFD] rounded-3xl p-6
-   border border-[#D7E5EC]
-   shadow-sm hover:shadow-md transition">
-
-    <div class="w-14 h-14 rounded-2xl
-        bg-[#EEF8FB]
-        flex items-center justify-center mb-5">
-
-        <i class="fa-solid fa-bowl-food
-            text-[#4B89A5] text-2xl"></i>
-
-    </div>
-
-    <h2 class="text-lg font-bold text-[#2B5D76]">
-        Menu Pasien
-    </h2>
-
-    <p class="text-gray-500 text-sm mt-2">
-        Daftar menu makanan pasien rawat inap
-    </p>
-
-</a>
-        <a href="/status-menu"
-           class="bg-[#F9FCFD] rounded-3xl p-6
-           border border-[#D7E5EC]
-           shadow-sm hover:shadow-md transition">
-
-            <div class="w-14 h-14 rounded-2xl
-                bg-[#F0F6F9]
-                flex items-center justify-center mb-5">
-
-                <i class="fa-solid fa-clipboard-check
-                    text-[#5E90A5] text-2xl"></i>
-
-            </div>
-
-            <h2 class="text-lg font-bold text-[#2B5D76]">
-                Status Menu
-            </h2>
-
-            <p class="text-gray-500 text-sm mt-2">
-                Monitoring menu pasien
-            </p>
-
-        </a>
-
-        <a href="/laporan"
-           class="bg-[#F9FCFD] rounded-3xl p-6
-           border border-[#D7E5EC]
-           shadow-sm hover:shadow-md transition">
-
-            <div class="w-14 h-14 rounded-2xl
-                bg-[#EEF8FB]
-                flex items-center justify-center mb-5">
-
-                <i class="fa-solid fa-file-medical
-                    text-[#4B89A5] text-2xl"></i>
-
-            </div>
-
-            <h2 class="text-lg font-bold text-[#2B5D76]">
-                Laporan
-            </h2>
-
-            <p class="text-gray-500 text-sm mt-2">
-                Laporan data menu pasien
-            </p>
-
-        </a>
-
-    </div>
-
-    {{-- STATISTIK --}}
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-
-        {{-- TOTAL PASIEN --}}
-        <div class="bg-[#EDF6FA]
-            border border-[#B7D4E5]
-            rounded-3xl p-6 shadow-sm">
-
-            <p class="text-sm text-[#4E6B7B] font-medium">
-                Total Pasien
-            </p>
-
-            <h2 class="text-4xl font-bold
-                text-[#2B5D76] mt-3">
-
-                {{ $totalPasien }}
-
-            </h2>
-
-            <p class="text-sm text-[#6C8795] mt-2">
-                Pasien terdaftar
-            </p>
-
-        </div>
-
-        {{-- MENU AKTIF --}}
-        <div class="bg-[#EEF8FB]
-            border border-[#BEE4EE]
-            rounded-3xl p-6 shadow-sm">
-
-            <p class="text-sm text-[#4E6B7B] font-medium">
-                Menu Aktif
-            </p>
-
-            <h2 class="text-4xl font-bold
-                text-[#2B5D76] mt-3">
-
-                {{ $menuAktif }}
-
-            </h2>
-
-            <p class="text-sm text-[#6C8795] mt-2">
-                Menu sedang diproses
-            </p>
-
-        </div>
-
-        {{-- STATUS MENU --}}
-        <div class="bg-[#F0F6F9]
-            border border-[#C4D7E2]
-            rounded-3xl p-6 shadow-sm">
-
-            <p class="text-sm text-[#4E6B7B] font-medium">
-                Status Menu
-            </p>
-
-            <h2 class="text-4xl font-bold
-                text-[#2B5D76] mt-3">
-
-                {{ $statusMenu }}
-
-            </h2>
-
-            <p class="text-sm text-[#6C8795] mt-2">
-                Monitoring menu
-            </p>
-
-        </div>
-
-        {{-- LAPORAN --}}
-        <div class="bg-[#F4FAFC]
-            border border-[#D9EDF3]
-            rounded-3xl p-6 shadow-sm">
-
-            <p class="text-sm text-[#4E6B7B] font-medium">
-                Laporan Hari Ini
-            </p>
-
-            <h2 class="text-4xl font-bold
-                text-[#2B5D76] mt-3">
-
-                {{ $laporanHariIni }}
-
-            </h2>
-
-            <p class="text-sm text-[#6C8795] mt-2">
-                Laporan terbaru
-            </p>
-
-        </div>
-
-    </div>
-
 </div>
+
+{{-- CHART --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('giziChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: [
+            'Pagi',
+            'Siang',
+            'Malam'
+        ],
+
+        datasets: [{
+
+            label: 'Distribusi Menu',
+
+            data: [
+                {{ $menuPagi }},
+                {{ $menuSiang }},
+                {{ $menuMalam }}
+            ],
+
+            backgroundColor: [
+                '#1F516B',
+                '#5F91A8',
+                '#89AFC2'
+            ],
+
+            borderRadius: 14,
+            borderSkipped: false,
+            barThickness: 90,
+            maxBarThickness: 110
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            legend: {
+                display: false
+            }
+
+        },
+
+        scales: {
+
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: '#EEF4F5'
+                }
+            },
+
+            x: {
+                grid: {
+                    display: false
+                }
+            }
+
+        }
+
+    }
+
+});
+
+</script>
 
 @endsection

@@ -8,95 +8,33 @@
     <!-- LEFT CONTENT -->
     <div class="flex-1 space-y-6">
 
-        <!-- STATISTIC -->
-        <div class="bg-[#EEF4F5] rounded-3xl p-5 shadow-sm">
+     <!-- STATISTIC -->
+<div class="bg-[#EEF4F5] rounded-2xl p-4 shadow-sm mb-6">
 
-            <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
-                <!-- CARD 1 -->
-                <div class="bg-[#F1FBF2] border border-green-300 rounded-2xl p-4">
+        <!-- CARD 1 -->
+        <div class="bg-[#F1FBF2] border border-green-300 rounded-2xl px-5 py-4">
 
-                    <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
 
-                        <div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center text-2xl">
-                            👤
-                        </div>
-
-                        <div>
-
-                            <h1 class="font-bold text-green-700 text-sm">
-                                Total Pasien 
-                            </h1>
-
-                            <h2 class="text-3xl font-bold">
-                               {{ $totalPasien }}
-                            </h2>
-
-                            <p class="text-gray-500 text-sm">
-                                Pasien
-                            </p>
-
-                        </div>
-
-                    </div>
-
+                <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center text-lg">
+                    👤
                 </div>
 
-                <!-- CARD 2 -->
-                <div class="bg-[#FFFBEF] border border-yellow-300 rounded-2xl p-4">
+                <div>
 
-                    <div class="flex items-center gap-4">
+                    <h1 class="font-bold text-green-700 text-sm">
+                        Total Pasien
+                    </h1>
 
-                        <div class="w-14 h-14 rounded-2xl bg-yellow-100 flex items-center justify-center text-2xl">
-                            🍱
-                        </div>
+                    <h2 class="text-2xl font-bold">
+                        {{ $totalPasien }}
+                    </h2>
 
-                        <div>
-
-                            <h1 class="font-bold text-yellow-700 text-sm">
-                                Total Menu Aktif
-                            </h1>
-
-                            <h2 class="text-3xl font-bold">
-                                {{ $totalMenuAktif }}
-                            </h2>
-
-                            <p class="text-gray-500 text-sm">
-                                Menu
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- CARD 3 -->
-                <div class="bg-[#F2F5FF] border border-blue-300 rounded-2xl p-4">
-
-                    <div class="flex items-center gap-4">
-
-                        <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center text-2xl">
-                            🚚
-                        </div>
-
-                        <div>
-
-                            <h1 class="font-bold text-blue-700 text-sm">
-                                Distribusi Hari Ini
-                            </h1>
-
-                            <h2 class="text-3xl font-bold">
-                                {{ $distribusiHariIni }}
-                            </h2>
-
-                            <p class="text-gray-500 text-sm">
-                                Distribusi
-                            </p>
-
-                        </div>
-
-                    </div>
+                    <p class="text-gray-500 text-xs">
+                        Pasien
+                    </p>
 
                 </div>
 
@@ -104,6 +42,67 @@
 
         </div>
 
+        <!-- CARD 2 -->
+        <div class="bg-[#FFFBEF] border border-yellow-300 rounded-2xl px-5 py-4">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-11 h-11 rounded-xl bg-yellow-100 flex items-center justify-center text-lg">
+                    🍱
+                </div>
+
+                <div>
+
+                    <h1 class="font-bold text-yellow-700 text-sm">
+                        Total Menu Aktif
+                    </h1>
+
+                    <h2 class="text-2xl font-bold">
+                        {{ $totalMenuAktif }}
+                    </h2>
+
+                    <p class="text-gray-500 text-xs">
+                        Menu
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="bg-[#F2F5FF] border border-blue-300 rounded-2xl px-5 py-4">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-11 h-11 rounded-xl bg-blue-100 flex items-center justify-center text-lg">
+                    🚚
+                </div>
+
+                <div>
+
+                    <h1 class="font-bold text-blue-700 text-sm">
+                        Distribusi Hari Ini
+                    </h1>
+
+                    <h2 class="text-2xl font-bold">
+                        {{ $distribusiHariIni }}
+                    </h2>
+
+                    <p class="text-gray-500 text-xs">
+                        Distribusi
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
         <!-- ABOUT -->
         <div class="bg-[#FFF1F1] rounded-2xl p-6 shadow-sm">
 

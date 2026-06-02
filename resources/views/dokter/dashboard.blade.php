@@ -1,64 +1,76 @@
 @extends('layouts.app')
-
 @section('title', 'Dashboard Dokter')
-
 @section('content')
 
-<div class="space-y-6">
+<div class="p-3 bg-[#F5FAFC] min-h-screen">
 
-    {{-- HERO SECTION --}}
-    <div class="relative overflow-hidden rounded-[30px]
-        bg-gradient-to-r from-[#2B5D76] to-[#4B89A5]
-        p-7 shadow-md">
+   {{-- HEADER --}}
+<div class="mb-5">
 
-        {{-- BACKGROUND ICON --}}
-        <div class="absolute right-0 top-0 opacity-10">
+    <p class="text-gray-500 mt-1 text-base">
+        Monitoring data pasien rumah sakit
+    </p>
 
-            <i class="fa-solid fa-stethoscope text-[170px]"></i>
+</div>
+
+{{-- HERO --}}
+<div class="bg-gradient-to-r from-[#1F516B] to-[#5F91A8]
+           rounded-[26px] px-7 py-5 mb-5
+            shadow-sm relative overflow-hidden">
+
+    <div class="flex items-center justify-between flex-wrap gap-5">
+
+        <div class="relative z-10">
+
+            <p class="uppercase tracking-[4px]
+                      text-white/70 text-[11px]
+                      font-semibold mb-3">
+
+                Pelayanan Medis Rumah Sakit
+
+            </p>
+
+            <h1 class="text-3xl font-bold
+                       text-white leading-tight">
+
+                Monitoring Data Pasien
+
+            </h1>
+
+            <p class="text-white/80 mt-4 text-base">
+
+                Selamat datang kembali,
+                {{ Auth::user()->name }}
+
+            </p>
 
         </div>
 
-        <div class="relative z-10 flex items-center justify-between">
+        {{-- CARD TANGGAL --}}
+        <div class="bg-white/15 backdrop-blur-md
+                    border border-white/20
+                    rounded-2xl px-5 py-4">
 
-            <div>
+            <div class="flex items-center gap-3">
 
-                <p class="uppercase tracking-[3px]
-                    text-xs text-white/80 font-medium">
+                <div class="w-12 h-12 rounded-xl
+                            bg-white/20
+                            flex items-center justify-center text-2xl">
 
-                    Pelayanan Medis Rumah Sakit
+                    📅
 
-                </p>
+                </div>
 
-                <h1 class="text-3xl font-bold mt-3
-                    text-white leading-tight">
+                <div>
 
-                    Monitoring Data Pasien & Laporan Medis
-
-                </h1>
-
-                <p class="mt-4 text-white/90">
-
-                    Selamat datang kembali,
-                    <span class="font-semibold">
-                        dr. {{ auth()->user()->name }}
-                    </span>
-
-                </p>
-
-            </div>
-
-            {{-- DATE --}}
-            <div class="hidden md:flex">
-
-                <div class="bg-white/15 backdrop-blur-md
-                    px-5 py-4 rounded-2xl border border-white/20">
-
-                    <p class="text-xs text-white/70">
-                        Tanggal Hari Ini
+                    <p class="text-white/70 text-xs">
+                        Hari Ini
                     </p>
 
-                    <h2 class="text-lg font-bold text-white mt-1">
-                        {{ date('d M Y') }}
+                    <h2 class="text-2xl font-bold text-white">
+
+                        {{ now()->format('d M Y') }}
+
                     </h2>
 
                 </div>
@@ -69,222 +81,268 @@
 
     </div>
 
-    {{-- QUICK MENU --}}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-        {{-- DATA PASIEN --}}
-        <a href="/dokter/data-pasien"
-           class="bg-[#F9FCFD] rounded-3xl p-6
-           border border-[#D7E5EC]
-           shadow-sm hover:shadow-md
-           transition-all duration-300">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-
-                    <div class="w-14 h-14 rounded-2xl
-                        bg-[#EDF6FA]
-                        flex items-center justify-center mb-5">
-
-                        <i class="fa-solid fa-user-injured
-                            text-[#2B5D76] text-2xl"></i>
-
-                    </div>
-
-                    <h2 class="text-xl font-bold text-[#2B5D76]">
-                        Data Pasien
-                    </h2>
-
-                    <p class="text-gray-500 text-sm mt-2">
-                        Lihat seluruh data pasien
-                    </p>
-
-                </div>
-
-                <div class="w-11 h-11 rounded-xl
-                    bg-[#EDF6FA]
-                    flex items-center justify-center">
-
-                    <i class="fa-solid fa-arrow-right
-                        text-[#2B5D76]"></i>
-
-                </div>
-
-            </div>
-
-        </a>
-
-        {{-- LAPORAN --}}
-        <a href="/dokter/laporan"
-           class="bg-[#F9FCFD] rounded-3xl p-6
-           border border-[#D7E5EC]
-           shadow-sm hover:shadow-md
-           transition-all duration-300">
-
-            <div class="flex items-center justify-between">
-
-                <div>
-
-                    <div class="w-14 h-14 rounded-2xl
-                        bg-[#EEF8FB]
-                        flex items-center justify-center mb-5">
-
-                        <i class="fa-solid fa-file-medical
-                            text-[#4B89A5] text-2xl"></i>
-
-                    </div>
-
-                    <h2 class="text-xl font-bold text-[#2B5D76]">
-                        Laporan
-                    </h2>
-
-                    <p class="text-gray-500 text-sm mt-2">
-                        Lihat laporan pasien
-                    </p>
-
-                </div>
-
-                <div class="w-11 h-11 rounded-xl
-                    bg-[#EEF8FB]
-                    flex items-center justify-center">
-
-                    <i class="fa-solid fa-arrow-right
-                        text-[#4B89A5]"></i>
-
-                </div>
-
-            </div>
-
-        </a>
-
+    {{-- ORNAMEN --}}
+    <div class="absolute -right-10 -top-10
+                w-44 h-44 bg-white/10 rounded-full">
     </div>
 
-    {{-- STATISTIK --}}
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div class="absolute right-16 bottom-[-50px]
+                w-32 h-32 bg-white/5 rounded-full">
+    </div>
 
-        {{-- TOTAL PASIEN --}}
-        <div class="bg-[#EDF6FA]
-            border border-[#B7D4E5]
-            rounded-3xl p-6 shadow-sm
-            hover:shadow-md transition">
+</div>
 
-            <div class="flex items-center justify-between">
+    {{-- CONTENT --}}
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-3">
+
+        {{-- GRAFIK --}}
+        <div class="xl:col-span-2
+                    bg-white border border-[#DCE8EC]
+                    rounded-3xl p-6 shadow-sm">
+
+            <div class="flex items-center justify-between mb-5">
 
                 <div>
 
-                    <p class="text-sm text-[#4E6B7B] font-medium">
-                        Total Pasien
-                    </p>
+                    <h2 class="text-3xl font-bold text-[#124265]">
 
-                    <h2 class="text-4xl font-bold
-                        text-[#2B5D76] mt-3">
-
-                       23
+                        Grafik Data Pasien
 
                     </h2>
-
-                    <p class="text-sm text-[#6C8795] mt-2">
-                        Data pasien aktif
-                    </p>
-
-                </div>
-
-                <div class="w-16 h-16 rounded-2xl
-                    bg-[#DCECF5]
-                    flex items-center justify-center">
-
-                    <i class="fa-solid fa-user-injured
-                        text-[#2B5D76] text-2xl"></i>
 
                 </div>
 
             </div>
+
+            <div class="h-[320px]">
+    <canvas id="patientChart"></canvas>
+</div>
 
         </div>
 
-        {{-- LAPORAN --}}
-        <div class="bg-[#EEF8FB]
-            border border-[#BEE4EE]
-            rounded-3xl p-6 shadow-sm
-            hover:shadow-md transition">
+        {{-- AKTIVITAS --}}
+        <div class="bg-white border border-[#DCE8EC]
+                    rounded-3xl p-6 shadow-sm">
 
-            <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-[#124265] mb-5">
 
-                <div>
+                Aktivitas Hari Ini
 
-                    <p class="text-sm text-[#4E6B7B] font-medium">
-                        Laporan Hari Ini
-                    </p>
+            </h2>
 
-                    <h2 class="text-4xl font-bold
-                        text-[#2B5D76] mt-3">
+            <div class="space-y-3">
+{{-- ITEM --}}
+<div class="bg-[#F6FFF8]
+            border border-green-300
+            rounded-2xl p-3">
 
-                        5
+    <div class="flex items-center gap-3">
 
-                    </h2>
+        <div class="w-12 h-12 rounded-xl
+                    bg-green-100
+                    flex items-center justify-center text-xl">
 
-                    <p class="text-sm text-[#6C8795] mt-2">
-                        Laporan terbaru
-                    </p>
-
-                </div>
-
-                <div class="w-16 h-16 rounded-2xl
-                    bg-[#DDF2F7]
-                    flex items-center justify-center">
-
-                    <i class="fa-solid fa-file-medical
-                        text-[#4B89A5] text-2xl"></i>
-
-                </div>
-
-            </div>
+            👤
 
         </div>
 
-        {{-- PASIEN BARU --}}
-        <div class="bg-[#F0F6F9]
-            border border-[#C4D7E2]
-            rounded-3xl p-6 shadow-sm
-            hover:shadow-md transition">
+        <div>
 
-            <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-green-700">
 
-                <div>
+                Total Pasien
 
-                    <p class="text-sm text-[#4E6B7B] font-medium">
-                        Pasien Baru
-                    </p>
+            </h3>
 
-                    <h2 class="text-4xl font-bold
-                        text-[#2B5D76] mt-3">
+            <p class="text-gray-500 text-sm">
 
-                       15
+                {{ $totalPasien }} pasien terdaftar
 
-                    </h2>
-
-                    <p class="text-sm text-[#6C8795] mt-2">
-                        Penambahan hari ini
-                    </p>
-
-                </div>
-
-                <div class="w-16 h-16 rounded-2xl
-                    bg-[#E4EEF3]
-                    flex items-center justify-center">
-
-                    <i class="fa-solid fa-bed-pulse
-                        text-[#5E90A5] text-2xl"></i>
-
-                </div>
-
-            </div>
+            </p>
 
         </div>
 
     </div>
 
 </div>
+
+               {{-- PASIEN AKTIF --}}
+<div class="bg-[#FFF6F6]
+            border border-red-200
+            rounded-2xl p-3">
+
+    <div class="flex items-center gap-3">
+
+        <div class="w-12 h-12 rounded-xl
+                    bg-red-100
+                    flex items-center justify-center text-xl">
+
+            🩺
+
+        </div>
+
+        <div>
+
+            <h3 class="font-semibold text-[#124265]">
+
+                Pasien Aktif
+
+            </h3>
+
+            <p class="text-gray-500 text-sm">
+
+                {{ $pasienAktif }} sedang dirawat
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{{-- PASIEN BARU --}}
+<div class="bg-[#FFFBEF]
+            border border-yellow-200
+            rounded-2xl p-3">
+
+    <div class="flex items-center gap-3">
+
+        <div class="w-12 h-12 rounded-xl
+                    bg-yellow-100
+                    flex items-center justify-center text-xl">
+
+            ➕
+
+        </div>
+
+        <div>
+
+            <h3 class="font-semibold text-[#124265]">
+
+                Pasien Baru
+
+            </h3>
+
+            <p class="text-gray-500 text-sm">
+
+                {{ $pasienBaru }} penambahan hari ini
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+            {{-- BUTTON --}}
+            <a href="/patients"
+               class="mt-6 w-full bg-[#1F516B]
+                      hover:bg-[#18445B]
+                      transition
+                      text-white py-4 rounded-2xl
+                      font-semibold flex items-center justify-center gap-2">
+
+                Lihat Data Pasien →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{{-- CHART --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('patientChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: [
+            'Total',
+            'Aktif',
+            'Baru'
+        ],
+
+        datasets: [{
+
+    label: 'Data Pasien',
+
+    data: [
+        {{ $totalPasien }},
+        {{ $pasienAktif }},
+        {{ $pasienBaru }}
+    ],
+
+    backgroundColor: [
+        '#1F516B',
+        '#5F91A8',
+        '#89AFC2'
+    ],
+
+    borderRadius: 14,
+    borderSkipped: false,
+
+    barThickness: 900,
+    maxBarThickness: 110,
+    categoryPercentage: 0.9,
+    barPercentage: 0.9
+
+}]
+    },
+
+    options: {
+
+        responsive: true,
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            legend: {
+                display: false
+            }
+
+        },
+
+        scales: {
+
+            y: {
+
+                beginAtZero: true,
+
+                grid: {
+                    color: '#EEF4F5'
+                },
+
+                ticks: {
+                    stepSize: 1
+                }
+
+            },
+
+            x: {
+
+                grid: {
+                    display: false
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
 
 @endsection
