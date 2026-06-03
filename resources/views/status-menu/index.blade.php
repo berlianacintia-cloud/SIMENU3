@@ -4,12 +4,12 @@
 
 @section('content')
 
-<div class="p-6 bg-[#EEF5F7] min-h-screen"">
+<div class="p-3 bg-[#EEF5F7] min-h-screen"">
 
     <!-- HEADER -->
     <div class="mb-6">
 
-        <p class="text-gray-500 mt-1">
+        <p class="text-gray-500 mt-1 text-sm">
             Monitoring status menu pasien
         </p>
     </div>
@@ -118,49 +118,85 @@
     </div>
 
 </div>
-    <!-- FILTER -->
+
+<!-- FILTER -->
+<form method="GET" action="{{ route('status-menu') }}">
+
     <div class="flex flex-col md:flex-row gap-4 mb-8">
 
         <!-- SEARCH -->
         <div class="w-full md:w-1/3">
+
             <input
                 type="text"
+                name="search"
+                value="{{ request('search') }}"
                 placeholder="Cari pasien..."
                 class="w-full border border-gray-300 rounded-2xl px-5 py-3"
             >
+
         </div>
 
-         <!-- BANGSAL -->
+        <!-- KELAS -->
         <div class="w-full md:w-1/4">
-            <select class="w-full border border-gray-300 rounded-2xl px-5 py-3">
 
-                <option>Semua Bangsal</option>
+            <select
+                name="kelas"
+                class="w-full border border-gray-300 rounded-2xl px-5 py-3"
+            >
 
-                <option>Mawar</option>
+                <option value="">
+                    Semua Bangsal
+                </option>
 
-                <option>Tulip</option>
+                @foreach($kelas as $item)
+
+                    <option
+                        value="{{ $item }}"
+                        {{ request('kelas') == $item ? 'selected' : '' }}
+                    >
+
+                        {{ $item }}
+
+                    </option>
+
+                @endforeach
 
             </select>
+
         </div>
 
         <!-- TANGGAL -->
         <div class="w-full md:w-1/4">
 
-            <form method="GET" action="{{ route('status-menu') }}">
+            <input
+                type="date"
+                name="tanggal"
+                value="{{ request('tanggal') }}"
+                class="w-full border border-gray-300 rounded-2xl px-5 py-3"
+            >
 
-                <input
-                    type="date"
-                    name="tanggal"
-                    value="{{ request('tanggal', date('Y-m-d')) }}"
-                    onchange="this.form.submit()"
-                    class="w-full border border-gray-300 rounded-2xl px-5 py-3"
-                >
+        </div>
 
-            </form>
+        <!-- BUTTON -->
+        <div>
+
+            <button
+                type="submit"
+                class="bg-[#1F516B]
+                       text-white px-6 py-3
+                       rounded-2xl"
+            >
+
+                Filter
+
+            </button>
 
         </div>
 
     </div>
+
+</form>
 
     <!-- TABLE -->
     <div class="bg-white rounded-3xl shadow-sm overflow-hidden">

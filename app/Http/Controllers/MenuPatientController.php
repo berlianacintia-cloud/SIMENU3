@@ -16,11 +16,13 @@ class MenuPatientController extends Controller
     */
 public function index(Request $request)
 {
-    $patients = Patient::all();
-
     $query = MenuPatient::with('patient');
 
-    // SEARCH PASIEN
+    /*
+    |--------------------------------------------------------------------------
+    | SEARCH PASIEN
+    |--------------------------------------------------------------------------
+    */
     if ($request->search) {
 
         $query->whereHas('patient', function ($q) use ($request) {
@@ -31,21 +33,41 @@ public function index(Request $request)
 
     }
 
-    // FILTER BENTUK MAKANAN
+    /*
+    |--------------------------------------------------------------------------
+    | FILTER BENTUK MAKANAN
+    |--------------------------------------------------------------------------
+    */
     if ($request->bentuk) {
 
-        $query->where('bentuk_makanan', $request->bentuk);
+        $query->where(
+            'bentuk_makanan',
+            $request->bentuk
+        );
 
     }
 
-    // FILTER JADWAL MAKAN
+    /*
+    |--------------------------------------------------------------------------
+    | FILTER JADWAL MAKAN
+    |--------------------------------------------------------------------------
+    */
     if ($request->jadwal) {
 
-        $query->where('jadwal_makan', $request->jadwal);
+        $query->where(
+            'jadwal_makan',
+            $request->jadwal
+        );
 
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | DATA MENU
+    |--------------------------------------------------------------------------
+    */
     $menus = $query->latest()->get();
+
 
     // TOTAL REALTIME
     $totalPasien = Patient::count();
@@ -55,6 +77,9 @@ public function index(Request $request)
     $menuSiang = MenuPatient::where('jadwal_makan', 'Siang')->count();
 
     $menuMalam = MenuPatient::where('jadwal_makan', 'Malam')->count();
+
+    // DATA PASIEN
+$patients = Patient::all();
 
     return view('menu-pasien.index', compact(
         'menus',
@@ -154,21 +179,82 @@ public function index(Request $request)
     |--------------------------------------------------------------------------
     */
 
-    public function statusMenu(Request $request)
-    {
-        $query = MenuPatient::with('patient');
+public function statusMenu(Request $request)
+{
+    $query = MenuPatient::with('patient');
 
-        // FILTER TANGGAL
-        if ($request->tanggal) {
+    /*
+    |--------------------------------------------------------------------------
+    | SEARCH PASIEN
+    |--------------------------------------------------------------------------
+    */
+    if ($request->search) {
 
-            $query->whereDate('created_at', $request->tanggal);
+        $query->whereHas('patient', function ($q) use ($request) {
 
-        }
+            $q->where(
+                'nama',
+                'like',
+                '%' . $request->search . '%'
+            );
 
-        $menus = $query->latest()->get();
+        });
 
-        return view('status-menu.index', compact('menus'));
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | FILTER KELAS
+    |--------------------------------------------------------------------------
+    */
+    if ($request->kelas) {
+
+        $query->whereHas('patient', function ($q) use ($request) {
+
+            $q->where(
+                'kelas',
+                $request->kelas
+            );
+
+        });
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | FILTER TANGGAL
+    |--------------------------------------------------------------------------
+    */
+    if ($request->tanggal) {
+
+        $query->whereDate(
+            'created_at',
+            $request->tanggal
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | DATA MENU
+    |--------------------------------------------------------------------------
+    */
+    $menus = $query->latest()->get();
+
+    /*
+    |--------------------------------------------------------------------------
+    | DATA KELAS DINAMIS
+    |--------------------------------------------------------------------------
+    */
+    $kelas = Patient::select('kelas')
+        ->distinct()
+        ->pluck('kelas');
+
+    return view('status-menu.index', compact(
+        'menus',
+        'kelas'
+    ));
+}
 
     /*
     |--------------------------------------------------------------------------
